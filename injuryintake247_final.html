@@ -1,0 +1,514 @@
+<!--
+  injuryintake247.com — single-file site, dossier edition
+  Deploy: upload as index.html. No build step. Fonts load from Google Fonts.
+
+  DESIGN: matches the physical audit map / evidence dossier — aged parchment, black Didone
+  headlines, brass-gold accent, oxblood = "current/leak" states, forest-green = "covered" states.
+  When a firm scans the mailer QR or types the URL, the site should feel like the same case file.
+
+  POSITIONING: sells AFTER-HOURS CASE CAPTURE, never "AI". The product is a trained intake
+  specialist answering live, with overnight backup. The word "AI" appears nowhere on purpose.
+
+  EDIT markers  -> your name / Calendly link / email / brand.
+  VERIFY markers -> industry stats; keep a source link for each before relying on them publicly.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InjuryIntake24/7 · The after-hours intake audit for personal injury firms</title>
+<meta name="description" content="An after-hours intake audit for personal injury firms. A trained intake specialist answers your night and weekend injury calls live, then qualifies, documents, and routes them to you before morning. Free until it books your first qualified consult.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Archivo:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:     #f3ecd9;   /* aged parchment ground */
+    --paper-2:   #f8f2e2;   /* lifted note */
+    --paper-3:   #efe6cf;   /* sunk panel */
+    --ink:       #1c1813;   /* warm near-black */
+    --ink-soft:  #5a5040;   /* muted brown body */
+    --ink-faint: #8c8068;   /* captions */
+    --brass:     #a8842f;   /* gold accent */
+    --brass-2:   #c6a456;   /* lighter gold */
+    --oxblood:   #8a3324;   /* current / leak */
+    --forest:    #2f5540;   /* covered / positive */
+    --rule:      rgba(28,24,19,.16);
+    --rule-2:    rgba(168,132,47,.42);
+    --dossier:   #1a1813;   /* dark dossier panel (matches "Scan this first") */
+    --maxw: 1120px;
+    --display: "Playfair Display", Georgia, serif;
+    --body: "Newsreader", Georgia, serif;
+    --label: "Archivo", system-ui, sans-serif;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:18px; line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    position:relative;
+  }
+  /* paper grain */
+  body::before{
+    content:""; position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+  }
+  /* subtle vignette / aging */
+  body::after{
+    content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:radial-gradient(120% 80% at 50% -10%, rgba(255,250,235,.5), transparent 55%),
+               radial-gradient(140% 120% at 50% 120%, rgba(80,60,20,.10), transparent 60%);
+  }
+  ::selection{ background:var(--brass); color:var(--paper); }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ position:relative; z-index:1; width:100%; max-width:var(--maxw); margin:0 auto; padding:0 30px; }
+
+  /* ---------- type ---------- */
+  h1,h2,h3{ font-family:var(--display); font-weight:700; line-height:1.05; letter-spacing:-.01em; }
+  .label{
+    font-family:var(--label); font-size:12px; font-weight:600;
+    letter-spacing:.22em; text-transform:uppercase; color:var(--brass);
+  }
+  .eyebrow{ display:inline-flex; align-items:center; gap:13px; }
+  .eyebrow::before,.eyebrow::after{ content:""; height:1px; width:30px; background:var(--rule-2); }
+  .eyebrow.solo::after{ display:none; }
+  .lead{ color:var(--ink-soft); font-size:19px; }
+  em, .italic{ font-style:italic; }
+
+  /* ---------- compass star ornament ---------- */
+  .star{ display:inline-block; color:var(--brass); }
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--label); font-weight:600; font-size:14px; letter-spacing:.06em; text-transform:uppercase;
+    padding:15px 26px; cursor:pointer; border:1.5px solid transparent;
+    transition:transform .15s ease, box-shadow .25s ease, background .2s, color .2s;
+  }
+  .btn-primary{ background:var(--ink); color:var(--paper-2); border-color:var(--ink); }
+  .btn-primary:hover{ background:var(--brass); border-color:var(--brass); color:#1a1206; transform:translateY(-2px); box-shadow:0 14px 30px -14px rgba(168,132,47,.7); }
+  .btn-ghost{ border-color:var(--ink); color:var(--ink); background:transparent; }
+  .btn-ghost:hover{ background:var(--ink); color:var(--paper-2); }
+  .btn:focus-visible{ outline:2px solid var(--brass); outline-offset:3px; }
+
+  /* ---------- nav ---------- */
+  nav{ position:sticky; top:0; z-index:50; background:rgba(243,236,217,.86); backdrop-filter:blur(8px); border-bottom:1px solid var(--rule); }
+  .nav-in{ display:flex; align-items:center; justify-content:space-between; height:66px; }
+  .brand{ font-family:var(--display); font-weight:700; font-size:20px; letter-spacing:-.01em; display:flex; align-items:center; gap:10px; }
+  .brand b{ font-style:italic; font-weight:600; }
+  .nav-cta{ font-size:13px; padding:11px 20px; }
+
+  /* ---------- hero ---------- */
+  header{ padding:78px 0 70px; position:relative; }
+  .stamp{
+    display:inline-flex; align-items:center; gap:12px; font-family:var(--label);
+    font-size:11.5px; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--oxblood); border:1.5px solid var(--oxblood); padding:9px 15px;
+    margin-bottom:34px; background:rgba(138,51,36,.04);
+  }
+  .stamp.open{ color:var(--forest); border-color:var(--forest); background:rgba(47,85,64,.05); }
+  .stamp .pip{ width:7px; height:7px; border-radius:50%; background:currentColor; }
+  h1.hero{ font-size:clamp(44px, 7vw, 86px); font-weight:800; max-width:15ch; }
+  .hero-sub{ font-family:var(--body); font-style:italic; font-size:clamp(19px,2.5vw,25px); color:var(--ink-soft); max-width:42ch; margin:26px 0 18px; line-height:1.45; }
+  .hero-rule{ display:flex; align-items:center; gap:16px; margin:30px 0 34px; max-width:520px; }
+  .hero-rule .ln{ flex:1; height:1px; background:var(--rule-2); }
+  .hero-cta{ display:flex; flex-wrap:wrap; gap:14px; align-items:center; }
+  .hero-note{ font-family:var(--label); font-size:11.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-faint); margin-top:26px; }
+
+  /* ---------- section frame ---------- */
+  section{ padding:80px 0; position:relative; }
+  .section-head{ max-width:64ch; margin-bottom:46px; }
+  .section-head h2{ font-size:clamp(30px,4.4vw,48px); font-weight:800; margin:16px 0 14px; }
+  .band-rule{ border:0; height:1px; background:var(--rule); }
+
+  /* ---------- reality flow ---------- */
+  .flow{ display:grid; grid-template-columns:repeat(6,1fr); gap:10px; }
+  .flow-step{ text-align:left; }
+  .flow-num{
+    width:38px; height:38px; border-radius:50%; background:var(--ink); color:var(--paper-2);
+    display:flex; align-items:center; justify-content:center; font-family:var(--display); font-weight:700; font-size:18px;
+    box-shadow:0 0 0 2px var(--paper), 0 0 0 3.5px var(--brass); margin-bottom:14px;
+  }
+  .flow-step.win .flow-num{ background:var(--brass); color:#1a1206; box-shadow:0 0 0 2px var(--paper), 0 0 0 3.5px var(--ink); }
+  .flow-step h4{ font-family:var(--label); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--brass); margin-bottom:8px; }
+  .flow-step p{ font-size:15px; color:var(--ink-soft); line-height:1.45; }
+  .flow-step.dead p{ color:var(--ink-faint); }
+
+  /* ---------- evidence board ---------- */
+  .board-head{ display:flex; align-items:center; gap:16px; margin-bottom:40px; }
+  .board-head .ttl{ font-family:var(--label); font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink); font-weight:700; }
+  .board-head .ln{ flex:1; height:1px; background:var(--rule); }
+  .cards{ display:grid; grid-template-columns:repeat(2,1fr); gap:34px 30px; }
+  .card{
+    position:relative; background:var(--paper-2); border:1px solid var(--rule);
+    padding:30px 28px 26px; box-shadow:0 18px 40px -28px rgba(40,30,10,.6);
+  }
+  .card:nth-child(1){ transform:rotate(-.5deg); }
+  .card:nth-child(2){ transform:rotate(.6deg); }
+  .card:nth-child(3){ transform:rotate(.5deg); }
+  .card:nth-child(4){ transform:rotate(-.7deg); }
+  /* tape */
+  .card::before{
+    content:""; position:absolute; top:-11px; left:50%; transform:translateX(-50%) rotate(-2deg);
+    width:96px; height:22px; background:rgba(168,132,47,.18); border:1px solid rgba(168,132,47,.25);
+  }
+  .card .tag{ font-family:var(--label); font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--paper-2); background:var(--ink); padding:4px 10px; display:inline-block; margin-bottom:16px; }
+  .card h3{ font-family:var(--display); font-size:22px; font-weight:700; line-height:1.18; margin-bottom:14px; }
+  .card p{ font-size:15.5px; color:var(--ink-soft); }
+  .card .quote{ font-style:italic; color:var(--ink); border-left:2px solid var(--brass); padding-left:14px; margin:6px 0 14px; }
+  .stars{ color:var(--brass); letter-spacing:2px; font-size:14px; margin-bottom:10px; }
+  .takeaway{ margin-top:18px; padding-top:14px; border-top:1px dashed var(--rule); }
+  .takeaway b{ font-family:var(--label); font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--brass); display:block; margin-bottom:6px; }
+  .takeaway span{ font-size:14.5px; color:var(--ink); }
+
+  /* ---------- covered comparison ---------- */
+  .cover{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--rule); border:1px solid var(--rule); }
+  .cover > div{ background:var(--paper-2); padding:34px 30px; }
+  .cover .hd{ display:inline-flex; align-items:center; gap:9px; font-family:var(--label); font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; padding:5px 12px; margin-bottom:22px; }
+  .cover .now .hd{ color:var(--paper-2); background:var(--oxblood); }
+  .cover .new .hd{ color:var(--paper-2); background:var(--forest); }
+  .chain{ list-style:none; }
+  .chain li{ display:flex; align-items:flex-start; gap:13px; padding:8px 0; font-size:16px; }
+  .chain li .ar{ font-family:var(--label); color:var(--brass); flex:0 0 auto; }
+  .cover .now .chain li{ color:var(--ink-soft); }
+  .cover .new .chain li{ color:var(--ink); }
+  .cover .new .chain li .ar{ color:var(--forest); }
+
+
+
+  /* ---------- operations cards ---------- */
+  .ops{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+  .op{
+    background:var(--paper-2); border:1px solid var(--rule); padding:26px 22px 24px;
+    box-shadow:0 16px 34px -28px rgba(40,30,10,.6); position:relative;
+  }
+  .op::before{ content:""; position:absolute; left:22px; right:22px; top:0; height:3px; background:var(--brass); opacity:.75; }
+  .op .k{ font-family:var(--label); font-size:10.5px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--brass); margin-bottom:11px; display:block; }
+  .op h3{ font-size:22px; line-height:1.16; margin-bottom:10px; }
+  .op p{ font-size:15.5px; color:var(--ink-soft); line-height:1.48; }
+  .op strong{ color:var(--ink); }
+
+  /* ---------- dossier offer panel ---------- */
+  .dossier-wrap{ display:grid; grid-template-columns:1.05fr 1fr; gap:50px; align-items:center; }
+  .dossier{
+    position:relative; background:var(--dossier); color:var(--paper-2);
+    border:1px solid #000; padding:46px 42px 40px;
+    box-shadow:0 40px 80px -40px rgba(0,0,0,.7);
+  }
+  /* gold inner frame */
+  .dossier .frame{ position:absolute; inset:11px; border:1px solid rgba(198,164,86,.45); pointer-events:none; }
+  /* folded corner */
+  .dossier .fold{ position:absolute; bottom:0; right:0; width:42px; height:42px;
+    background:linear-gradient(135deg, transparent 50%, rgba(198,164,86,.35) 50%, rgba(255,240,200,.5) 100%);
+  }
+  .dossier .inner{ position:relative; z-index:2; }
+  .dossier .label{ color:var(--brass-2); }
+  .dossier h2{ color:var(--paper-2); font-size:clamp(26px,3.4vw,36px); font-weight:700; margin:14px 0 18px; }
+  .dossier p{ color:#cfc5ad; font-size:16px; }
+  .dossier ul{ list-style:none; margin:24px 0 28px; }
+  .dossier li{ display:flex; gap:12px; padding:9px 0; border-top:1px solid rgba(198,164,86,.18); font-size:15.5px; color:var(--paper-2); }
+  .dossier li:first-child{ border-top:0; }
+  .dossier .mk{ color:var(--brass-2); flex:0 0 auto; }
+  .dossier .btn-primary{ background:var(--brass); border-color:var(--brass); color:#1a1206; }
+  .dossier .btn-primary:hover{ background:var(--brass-2); border-color:var(--brass-2); }
+  .dossier .fine{ font-family:var(--label); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:#9a8f76; margin-top:18px; }
+
+  .offer-aside h2{ font-size:clamp(26px,3.6vw,40px); font-weight:800; margin:16px 0 18px; }
+  .offer-aside p{ color:var(--ink-soft); margin-bottom:16px; }
+  .offer-aside p strong{ color:var(--ink); }
+
+  /* ---------- closing band ---------- */
+  .closing{ background:var(--ink); color:var(--paper-2); padding:56px 0; }
+  .closing .wrap{ text-align:center; }
+  .closing .star{ color:var(--brass-2); font-size:20px; }
+  .closing p{ font-family:var(--display); font-size:clamp(22px,3vw,34px); font-weight:600; line-height:1.3; max-width:30ch; margin:18px auto 0; }
+  .closing p em{ color:var(--brass-2); font-style:italic; }
+
+  /* ---------- final cta ---------- */
+  .final{ text-align:center; padding:88px 0; }
+  .final h2{ font-size:clamp(34px,5vw,58px); font-weight:800; max-width:18ch; margin:14px auto 20px; }
+  .final .lead{ max-width:50ch; margin:0 auto 34px; }
+
+  /* ---------- footer ---------- */
+  footer{ border-top:1px solid var(--rule); padding:34px 0; }
+  .foot-in{ display:flex; flex-wrap:wrap; gap:14px; justify-content:center; align-items:center; font-family:var(--label); font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-faint); }
+  .foot-in .star{ color:var(--brass); }
+  .foot-in b{ color:var(--ink); font-weight:600; }
+
+  /* ---------- reveal ---------- */
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+
+  /* ---------- responsive ---------- */
+  @media(max-width:920px){
+    .flow{ grid-template-columns:repeat(2,1fr); gap:26px 16px; }
+    .cards,.cover,.dossier-wrap,.ops{ grid-template-columns:1fr; }
+    .dossier-wrap{ gap:36px; }
+    .card{ transform:none !important; }
+    .nav-cta{ display:none; }
+    section{ padding:60px 0; }
+    header{ padding:54px 0; }
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{ animation:none !important; transition:none !important; }
+    .reveal{ opacity:1; transform:none; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- compass star, reused -->
+<svg width="0" height="0" style="position:absolute"><symbol id="compass" viewBox="0 0 24 24"><path fill="currentColor" d="M12 1l2.2 8.8L23 12l-8.8 2.2L12 23l-2.2-8.8L1 12l8.8-2.2z"/></symbol></svg>
+
+<nav>
+  <div class="wrap nav-in">
+    <!-- EDIT: brand -->
+    <div class="brand"><svg class="star" width="16" height="16"><use href="#compass"/></svg> InjuryIntake24/7</div>
+    <a class="btn btn-ghost nav-cta" href="#book">Book a setup call</a>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<header>
+  <div class="wrap">
+    <div class="stamp open" id="stamp"><span class="pip"></span><span id="stamp-text">Filing time…</span></div>
+    <h1 class="hero">You are missing cases after hours.</h1>
+    <p class="hero-sub">Some injured people never call because they choose the firm that looks reachable now. Others do call, hit voicemail, and keep dialing. Either way, the case can move before tomorrow morning.</p>
+    <div class="hero-rule"><span class="ln"></span><svg class="star" width="15" height="15"><use href="#compass"/></svg><span class="ln"></span></div>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#book">Book a setup call</a>
+      <a class="btn btn-ghost" href="#evidence">See the evidence</a>
+    </div>
+    <p class="hero-note">Trained intake specialist · live after-hours answering · overnight backup · free until it books your first qualified consult</p>
+  </div>
+</header>
+
+<hr class="band-rule">
+
+<!-- ===================== REALITY FLOW ===================== -->
+<section id="flow">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="label eyebrow">The reality flow</span>
+      <h2>How an after-hours case actually moves.</h2>
+      <p class="lead">It rarely ends at your voicemail. It ends at the next firm on the list.</p>
+    </div>
+    <div class="flow reveal">
+      <div class="flow-step"><div class="flow-num">1</div><h4>After hours</h4><p>An injured person searches for a personal injury lawyer at 7 PM, 10 PM, 2 AM.</p></div>
+      <div class="flow-step"><div class="flow-num">2</div><h4>They scan</h4><p>They go down the listings, looking for a firm that's reachable right now.</p></div>
+      <div class="flow-step"><div class="flow-num">3</div><h4>They call</h4><p>They dial the firms that appear open, reachable, or clearly covered after hours.</p></div>
+      <div class="flow-step dead"><div class="flow-num">4</div><h4>You look closed</h4><p>If your after-hours coverage is not visible, the path goes quiet.</p></div>
+      <div class="flow-step dead"><div class="flow-num">5</div><h4>The gap</h4><p>Some never call at all. Others hit voicemail, then keep dialing.</p></div>
+      <div class="flow-step win"><div class="flow-num">6</div><h4>First chance</h4><p>The firm with real live coverage gets the first shot at the case.</p></div>
+    </div>
+  </div>
+</section>
+
+<hr class="band-rule">
+
+<!-- ===================== EVIDENCE BOARD ===================== -->
+<section id="evidence">
+  <div class="wrap">
+    <div class="board-head reveal">
+      <span class="ttl">The evidence board · what an after-hours audit finds</span>
+      <span class="ln"></span>
+      <svg class="star" width="16" height="16"><use href="#compass"/></svg>
+    </div>
+
+    <div class="cards">
+      <div class="card reveal">
+        <span class="tag">Evidence 01</span>
+        <div class="stars">★★★★★</div>
+        <h3>When people reach you, trust is already there.</h3>
+        <p class="quote">Reviews consistently describe attorneys who are attentive, thorough, and trusted, once a client actually gets through.</p>
+        <p>The firms we audit rarely have a trust problem. People who reach them tend to convert.</p>
+        <div class="takeaway"><b>Takeaway</b><span>The issue isn't trust. It's reaching the firm while the injured person is still ready to act.</span></div>
+      </div>
+
+      <div class="card reveal">
+        <span class="tag">Evidence 02</span>
+        <h3>After 5 PM, the phone path ends in voicemail.</h3>
+        <p>Your front desk can be excellent during business hours. But when the office closes and the line rolls to voicemail, an urgent caller may not treat that as a handoff. They may treat it as a reason to keep dialing.</p>
+        <div class="takeaway"><b>Takeaway</b><span>The gap doesn't start with your staff. It starts the minute coverage disappears.</span></div>
+      </div>
+
+      <div class="card reveal">
+        <span class="tag">Evidence 03</span>
+        <h3>A reachable competitor wins the attention.</h3>
+        <p>The firm with visible live coverage, a real answer, and a clear next step gets the attention. After hours, being reachable is the contest, and most firms are not in it.</p>
+        <div class="takeaway"><b>Takeaway</b><span>The firm that answers first gets the first chance to sign.</span></div>
+      </div>
+
+      <div class="card reveal">
+        <span class="tag">Evidence 04</span>
+        <h3>If you advertise, the after-hours gap gets more expensive.</h3>
+        <p>Every dollar of marketing buys attention. When that attention turns into an after-hours call and the caller hits voicemail, you paid to create demand and then gave the caller a reason to keep searching.</p>
+        <div class="takeaway"><b>Takeaway</b><span>After-hours coverage protects the leads you already paid to create, especially when advertising starts.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="band-rule">
+
+<!-- ===================== COVERED ===================== -->
+<section id="covered">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="label eyebrow">What changes</span>
+      <h2>What after-hours intake coverage actually changes.</h2>
+      <p class="lead">It doesn't replace your front desk. It covers only the hours that currently go unprotected.</p>
+    </div>
+    <div class="cover reveal">
+      <div class="now">
+        <span class="hd">Current</span>
+        <ul class="chain">
+          <li><span class="ar">→</span> After-hours search</li>
+          <li><span class="ar">→</span> Firm not clearly reachable</li>
+          <li><span class="ar">→</span> No call, or voicemail</li>
+          <li><span class="ar">→</span> Case goes elsewhere</li>
+        </ul>
+      </div>
+      <div class="new">
+        <span class="hd">Covered ✓</span>
+        <ul class="chain">
+          <li><span class="ar">→</span> After-hours search</li>
+          <li><span class="ar">→</span> Firm shows real after-hours coverage</li>
+          <li><span class="ar">→</span> Call answered live, in your firm's name</li>
+          <li><span class="ar">→</span> Caller qualified by your rules · details captured</li>
+          <li><span class="ar">→</span> Consult path started · routed to you before morning</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<hr class="band-rule">
+
+<!-- ===================== OPERATIONS ===================== -->
+<section id="operations">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="label eyebrow">How it works</span>
+      <h2>Coverage only works if the attorney stays in control.</h2>
+      <p class="lead">The goal is not to improvise legal advice after hours. The goal is to answer live, collect the facts, qualify against your rules, and route the right matters fast.</p>
+    </div>
+    <div class="ops reveal">
+      <div class="op">
+        <span class="k">01 · Criteria</span>
+        <h3>You define the case.</h3>
+        <p>Before coverage starts, you set the injury types, locations, time windows, exclusions, and what counts as a <strong>qualified consult.</strong></p>
+      </div>
+      <div class="op">
+        <span class="k">02 · Answering</span>
+        <h3>Calls get a real path.</h3>
+        <p>The caller is answered in your firm's name, told this is after-hours intake, and guided through a calm, structured intake.</p>
+      </div>
+      <div class="op">
+        <span class="k">03 · Documentation</span>
+        <h3>Nothing disappears.</h3>
+        <p>Incident facts, contact details, urgency, representation status, and notes are captured so your team is not reconstructing the call later.</p>
+      </div>
+      <div class="op">
+        <span class="k">04 · Routing</span>
+        <h3>You wake up with context.</h3>
+        <p>Qualified consults and urgent matters are routed according to your preference, with the intake summary ready before morning.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== OFFER (DOSSIER) ===================== -->
+<section id="offer">
+  <div class="wrap dossier-wrap">
+    <div class="dossier reveal">
+      <div class="frame"></div><div class="fold"></div>
+      <div class="inner">
+        <span class="label">The coverage</span>
+        <h2>Free until it books your first qualified consult.</h2>
+        <p>You've never heard of us, and a stranger asking to handle your firm's calls deserves skepticism. So you define the rules first, and the risk sits with us.</p>
+        <ul>
+          <li><span class="mk">✦</span> No setup fee, no upfront payment</li>
+          <li><span class="mk">✦</span> You define what counts as qualified before coverage starts</li>
+          <li><span class="mk">✦</span> If no qualified consult comes through, you owe nothing</li>
+          <li><span class="mk">✦</span> You review the intake, call notes, and result before you decide</li>
+        </ul>
+        <a class="btn btn-primary" href="#book">Book a setup call</a>
+        <p class="fine">After the first qualified consult, you decide whether to continue at a flat monthly fee. That's the whole structure.</p>
+      </div>
+    </div>
+
+    <div class="offer-aside reveal">
+      <span class="label eyebrow solo">The math</span>
+      <h2>The number that matters isn't the fee.</h2>
+      <p>For a personal injury firm, a single missed qualified case can be worth many months of intake coverage.</p>
+      <p>After-hours injury callers are often not casually browsing. They may be worried, in pain, and looking for the first credible firm that actually answers.</p>
+      <p>So the question is not only what coverage costs. It is whether even one captured case makes the coverage obvious.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CLOSING BAND ===================== -->
+<div class="closing">
+  <div class="wrap reveal">
+    <svg class="star" width="20" height="20"><use href="#compass"/></svg>
+    <p>The real loss is not just the voicemail. <em>It is the after-hours cases that go to the firm that looks reachable first.</em></p>
+  </div>
+</div>
+
+<!-- ===================== FINAL CTA ===================== -->
+<section class="final" id="book">
+  <div class="wrap reveal">
+    <span class="label eyebrow" style="justify-content:center;">Book it</span>
+    <h2>Your after-hours line could be covered this week.</h2>
+    <p class="lead">A focused setup call to confirm your intake criteria: case types, locations, exclusions, what counts as qualified, how calls should be routed, and what the specialist says in your firm's name. It's a setup call, not a sales pitch.</p>
+    <!-- EDIT: Calendly link -->
+    <a class="btn btn-primary" href="https://calendly.com/dario-injuryintake247/30min" style="font-size:15px; padding:17px 32px;">Book a setup call</a>
+    <!-- EDIT: email -->
+    <p class="hero-note" style="margin-top:24px;">or write to <a href="mailto:dario@injuryintake247.com" style="color:var(--brass); border-bottom:1px solid var(--rule-2);">dario@injuryintake247.com</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <!-- EDIT: name -->
+    <span>InjuryIntake24/7 · after-hours injury intake, answered live</span>
+  </div>
+</footer>
+
+<script>
+  // live "filing time" stamp — investigative tone, after-hours aware
+  (function(){
+    const stamp = document.getElementById('stamp');
+    const text  = document.getElementById('stamp-text');
+    function tick(){
+      const d = new Date();
+      const h = d.getHours();
+      const after = (h >= 17 || h < 9);
+      const t = d.toLocaleTimeString([], {hour:'numeric', minute:'2-digit'});
+      if(after){
+        stamp.classList.remove('open');
+        text.textContent = 'After hours · ' + t + ' · a new injury call right now meets voicemail';
+      } else {
+        stamp.classList.add('open');
+        text.textContent = 'Office hours · ' + t + ' · at 5:01 PM, most firms go dark';
+      }
+    }
+    tick(); setInterval(tick, 30000);
+  })();
+
+  // scroll reveals
+  const io = new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, {threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
