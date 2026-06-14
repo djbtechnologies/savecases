@@ -16,8 +16,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Public+Sans:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   SAVECASES — design tokens
-   Night (the problem) → Morning (what your team wakes up to)
+   SAVECASES design tokens
+   Night (the problem) to Morning (what your team wakes up to)
    ============================================================ */
 :root{
   --night:      #1A1813;   /* dark dossier black-brown */
@@ -617,7 +617,7 @@ a:focus-visible, .btn:focus-visible{
       <article class="ev-card rv">
         <p class="ev-tag">Evidence 01 <span class="ev-stars" aria-label="five star reviews">★★★★★</span></p>
         <h3>When people reach you, trust is already there.</h3>
-        <p>Reviews consistently describe attorneys who are attentive, thorough, and trusted — once a client actually gets through. The firms we review rarely have a trust problem. People who reach them tend to convert.</p>
+        <p>Reviews consistently describe attorneys who are attentive, thorough, and trusted once a client actually gets through. The firms we review rarely have a trust problem. People who reach them tend to convert.</p>
         <p class="ev-take"><b>Takeaway</b>The issue isn't trust. It's reaching the firm while the injured person is still ready to act.</p>
       </article>
 
@@ -631,14 +631,14 @@ a:focus-visible, .btn:focus-visible{
       <article class="ev-card rv">
         <p class="ev-tag">Evidence 03</p>
         <h3>A reachable competitor wins the attention.</h3>
-        <p>The firm with visible live coverage, a real answer, and a clear next step gets the attention. After hours, being reachable is the contest — and most firms are not in it.</p>
+        <p>The firm with visible live coverage, a real answer, and a clear next step gets the attention. After hours, being reachable is the contest, and most firms are not in it.</p>
         <p class="ev-take"><b>Takeaway</b>The firm that answers first gets the first chance to sign.</p>
       </article>
 
       <article class="ev-card rv">
         <p class="ev-tag">Evidence 04</p>
         <h3>If you advertise, the gap gets more expensive.</h3>
-        <p>Every dollar of marketing buys attention. When that attention turns into an after-hours call and the caller hits voicemail, you paid to create demand — then gave the caller a reason to keep searching.</p>
+        <p>Every dollar of marketing buys attention. When that attention turns into an after-hours call and the caller hits voicemail, you paid to create demand, then gave the caller a reason to keep searching.</p>
         <p class="ev-take"><b>Takeaway</b>After-hours coverage protects the leads you already paid to create, especially when advertising starts.</p>
       </article>
     </div>
@@ -658,7 +658,7 @@ a:focus-visible, .btn:focus-visible{
         <ul>
           <li>An injured person searches after hours</li>
           <li>Your firm doesn't look clearly reachable</li>
-          <li>No call — or a call that hits voicemail</li>
+          <li>No call, or a call that hits voicemail</li>
           <li>The case goes to the next firm on the list</li>
         </ul>
       </div>
@@ -739,7 +739,7 @@ a:focus-visible, .btn:focus-visible{
 
     <div class="selected-grid">
       <div class="selected-note rv">
-        <p>We do not offer the 30-day test to every firm. SaveCases identifies personal injury firms with <b>strong local credibility, active injury positioning, and potential after-hours demand</b> — then offers a limited entry test to show whether ongoing coverage may capture real missed opportunity.</p>
+        <p>We do not offer the 30-day test to every firm. SaveCases identifies personal injury firms with <b>strong local credibility, active injury positioning, and potential after-hours demand</b>, then offers a limited entry test to show whether ongoing coverage may capture real missed opportunity.</p>
       </div>
       <ul class="selected-list rv">
         <li>Your firm handles personal injury matters</li>
@@ -775,7 +775,8 @@ a:focus-visible, .btn:focus-visible{
       </article>
       <article class="faq-item rv">
         <h3>Do we have to list ourselves as 24/7?</h3>
-        <p>The goal is to measure and maintain real after-hours intake coverage. Your firm should only use wording that is accurate, such as 24/7 intake coverage or after-hours call answering.</p>
+        <p>Yes. If your firm has real 24/7 intake coverage, you should make that clear so you can capitalize on the after-hours demand the test is designed to measure.</p>
+        <p>The key is accuracy. You should not imply that attorneys are personally available 24/7 unless that is true. But if new injury calls are being answered, screened, documented, and routed outside normal business hours, your firm can accurately position itself as having <b>24/7 intake coverage</b> or <b>after-hours call answering</b>.</p>
       </article>
       <article class="faq-item rv">
         <h3>Does SaveCases give legal advice?</h3>
@@ -796,7 +797,7 @@ a:focus-visible, .btn:focus-visible{
     <h2 class="rv">See whether your firm qualifies to start with a 30-day test.</h2>
     <p class="sub lede rv">A focused review to confirm your practice area, market fit, intake criteria, routing preferences, and whether SaveCases should begin by proving the value of after-hours coverage for your firm.</p>
     <a class="btn btn-amber rv" href="mailto:dario@savecases.com?subject=SaveCases%20qualification%20review">See If Your Firm Qualifies <span class="arr">→</span></a>
-    <p class="book-clockline rv">Right now it's <strong id="bookClock">--:--</strong> — <span id="bookContext">tonight, your line is covered or it isn't.</span></p>
+    <p class="book-clockline rv">Right now it's <strong id="bookClock">--:--</strong>. <span id="bookContext">tonight, your line is covered or it isn't.</span></p>
     <p class="book-mail rv">or write to <a href="mailto:dario@savecases.com">dario@savecases.com</a></p>
   </div>
 </section>
@@ -844,7 +845,7 @@ setInterval(tick, 1000);
   var bookCtx = document.getElementById("bookContext");
 
   if (businessHours){
-    if (ctx) ctx.innerHTML = "Business hours — your front desk has this covered. <strong>At closing time, this page is what your callers experience.</strong>";
+    if (ctx) ctx.innerHTML = "Business hours. Your front desk has this covered. <strong>At closing time, this page is what your callers experience.</strong>";
     if (bookCtx) bookCtx.textContent = "tonight at closing time, your line is covered or it isn't.";
   } else {
     if (ctx) ctx.innerHTML = "It's after hours. <strong>If an injured person called your firm this minute, who answers?</strong>";
