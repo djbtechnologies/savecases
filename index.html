@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SaveCases · After-hours intake for personal injury firms</title>
-<meta name="description" content="A trained intake specialist answers your night and weekend injury calls live, then qualifies, documents, and routes them to you before morning. Free until it books your first qualified consult.">
+<meta name="description" content="SaveCases helps selected personal injury firms test whether after-hours intake is a hidden growth bottleneck with a qualification-based 30-day diagnostic.">
 <meta property="og:title" content="SaveCases · After-hours intake for personal injury firms">
-<meta property="og:description" content="Night and weekend injury calls, answered live in your firm's name. Free until it books your first qualified consult.">
+<meta property="og:description" content="See if your firm qualifies for the 30-Day Missed Injury Opportunities Test for after-hours intake coverage.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://savecases.com/">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -366,6 +366,41 @@ a:focus-visible, .btn:focus-visible{
 @media (max-width:980px){ .how-grid{ grid-template-columns:1fr 1fr; } }
 @media (max-width:600px){ .how-grid{ grid-template-columns:1fr; } }
 
+/* ---------- selected firms ---------- */
+.selected{ background:var(--paper); border-top:1px solid var(--line-day); }
+.selected-grid{
+  margin-top:54px;
+  display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:start;
+}
+.selected-note{
+  background:var(--card);
+  border:1px solid var(--line-day);
+  border-left:4px solid var(--amber);
+  border-radius:var(--r);
+  padding:34px 32px;
+  color:var(--ink-soft);
+}
+.selected-note b{ color:var(--ink); }
+.selected-list{
+  list-style:none;
+  background:var(--night);
+  border:1px solid var(--line-night);
+  border-radius:16px;
+  padding:24px 28px;
+  color:var(--cloud);
+}
+.selected-list li{
+  padding:12px 0 12px 32px; position:relative;
+  border-bottom:1px solid var(--line-night);
+  font-size:.97rem; line-height:1.5;
+}
+.selected-list li:last-child{ border-bottom:none; }
+.selected-list li::before{
+  content:"✓"; position:absolute; left:0; top:12px;
+  color:var(--green); font-weight:700;
+}
+@media (max-width:880px){ .selected-grid{ grid-template-columns:1fr; } }
+
 /* ---------- the coverage / offer ---------- */
 .offer{ background:var(--card); border-top:1px solid var(--line-day); }
 .offer-card{
@@ -395,6 +430,22 @@ a:focus-visible, .btn:focus-visible{
 .offer-side .big em{ font-style:italic; color:var(--amber-deep); }
 .offer-side p{ color:var(--ink-soft); font-size:.95rem; margin-bottom:26px; }
 @media (max-width:880px){ .offer-card{ grid-template-columns:1fr; gap:32px; } }
+
+/* ---------- faq ---------- */
+.faq{ background:var(--card); border-top:1px solid var(--line-day); }
+.faq-grid{
+  margin-top:54px;
+  display:grid; grid-template-columns:1fr 1fr; gap:18px;
+}
+.faq-item{
+  background:var(--paper);
+  border:1px solid var(--line-day);
+  border-radius:var(--r);
+  padding:28px 30px;
+}
+.faq-item h3{ font-size:1.18rem; margin-bottom:10px; }
+.faq-item p{ color:var(--ink-soft); font-size:.96rem; }
+@media (max-width:880px){ .faq-grid{ grid-template-columns:1fr; } }
 
 /* ---------- the math ---------- */
 .math{ background:var(--paper); border-top:1px solid var(--line-day); text-align:center; }
@@ -465,7 +516,7 @@ a:focus-visible, .btn:focus-visible{
   <div class="wrap">
     <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>SaveCases</a>
     <div class="nav-clock" aria-hidden="true">Your local time · <strong id="navClock">--:--</strong></div>
-    <a class="btn btn-amber" href="#book">Book a setup call</a>
+    <a class="btn btn-amber" href="#book">See If Your Firm Qualifies</a>
   </div>
 </header>
 
@@ -474,14 +525,14 @@ a:focus-visible, .btn:focus-visible{
   <div class="wrap hero-grid">
     <div>
       <p class="eyebrow">After-hours intake · personal injury firms</p>
-      <h1>You're missing cases <em>after hours.</em></h1>
-      <p class="lede">Some injured people never call because they choose the firm that looks reachable right now. Others do call, hit voicemail, and keep dialing. Either way, the case can move before tomorrow morning.</p>
+      <h1>See If Your Firm Is Missing Injury Calls <em>After Hours.</em></h1>
+      <p class="lede">SaveCases helps selected personal injury firms test whether after-hours intake is a hidden growth bottleneck. If your firm qualifies, we cover after-hours intake for 30 days and show you the real call volume, qualified opportunities, and intake summaries.</p>
       <div class="hero-ctas">
-        <a class="btn btn-amber" href="#book">Book a setup call <span class="arr">→</span></a>
-        <a class="btn btn-ghost-n" href="#evidence">See the evidence</a>
+        <a class="btn btn-amber" href="#book">See If Your Firm Qualifies <span class="arr">→</span></a>
+        <a class="btn btn-ghost-n" href="#test">Watch the Opportunity Test</a>
       </div>
       <p class="hero-trust">
-        <b>Trained intake specialist</b><span class="sep">·</span>live after-hours answering<span class="sep">·</span>overnight backup<span class="sep">·</span><b>free until it books your first qualified consult</b>
+        <b>Qualification-based diagnostic</b><span class="sep">·</span>after-hours intake<span class="sep">·</span>30-day opportunity report<span class="sep">·</span><b>for selected firms</b>
       </p>
     </div>
 
@@ -514,6 +565,27 @@ a:focus-visible, .btn:focus-visible{
   </div>
 </section>
 
+<!-- ============ SELECTED FIRMS ============ -->
+<section class="section selected" id="selected">
+  <div class="wrap">
+    <p class="eyebrow rv">Why your firm may have been selected</p>
+    <h2 class="rv">This test is offered only when the after-hours gap looks worth measuring.</h2>
+
+    <div class="selected-grid">
+      <div class="selected-note rv">
+        <p>We do not run this test for every firm. SaveCases identifies personal injury firms with <b>strong local credibility, active injury positioning, and potential after-hours demand</b> — then offers a limited diagnostic to see whether missed calls are costing them cases.</p>
+      </div>
+      <ul class="selected-list rv">
+        <li>Your firm handles personal injury matters</li>
+        <li>Your firm has visible local trust signals</li>
+        <li>Your firm is not clearly showing true after-hours intake coverage</li>
+        <li>Injured people in your market may be searching outside business hours</li>
+        <li>Your team can define what counts as a qualified injury opportunity</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <!-- ============ REALITY FLOW ============ -->
 <section class="flow">
   <div class="wrap">
@@ -525,7 +597,7 @@ a:focus-visible, .btn:focus-visible{
       <div class="flow-step">
         <span class="t">9:47 PM</span>
         <h3>The search starts</h3>
-        <p>An injured person searches for a personal injury lawyer at 7 PM, 10 PM, 2 AM. The injury doesn't wait for business hours.</p>
+        <p>An injured person searches for a personal injury firm at 7 PM, 10 PM, 2 AM. The injury doesn't wait for business hours.</p>
       </div>
       <div class="flow-step">
         <span class="t">9:51 PM</span>
@@ -616,9 +688,9 @@ a:focus-visible, .btn:focus-visible{
         <ul>
           <li>An injured person searches after hours</li>
           <li>Your firm shows real after-hours coverage</li>
-          <li>The call is answered live, in your firm's name</li>
+          <li>New injury calls are answered outside business hours</li>
           <li>The caller is qualified by your rules · details captured</li>
-          <li>Consult path started · routed to you before morning</li>
+          <li>Opportunity summary routed to you before morning</li>
         </ul>
       </div>
     </div>
@@ -629,52 +701,52 @@ a:focus-visible, .btn:focus-visible{
 <section class="section how">
   <div class="wrap">
     <p class="eyebrow rv">How it works</p>
-    <h2 class="rv">Coverage only works if the attorney stays in control.</h2>
-    <p class="sub lede rv">The goal is not to improvise legal advice after hours. The goal is to answer live, collect the facts, qualify against your rules, and route the right matters fast.</p>
+    <h2 class="rv">The diagnostic is structured before the first after-hours call is answered.</h2>
+    <p class="sub lede rv">The goal is to measure real demand: call volume, injury-related inquiries, qualified opportunities, and what happened when each caller reached a live intake path.</p>
 
     <div class="how-grid rv">
       <div class="how-step">
         <span class="n">01</span>
-        <h3>You define the case.</h3>
-        <p>Before coverage starts, you set the injury types, locations, time windows, exclusions, and what counts as a <b>qualified consult.</b></p>
+        <h3>Your firm qualifies for the test</h3>
+        <p>We confirm your practice area, market fit, intake criteria, and whether after-hours coverage is worth testing.</p>
       </div>
       <div class="how-step">
         <span class="n">02</span>
-        <h3>Calls get a real path.</h3>
-        <p>The caller is answered in your firm's name, told this is after-hours intake, and guided through a calm, structured conversation.</p>
+        <h3>We cover after-hours intake for 30 days</h3>
+        <p>Calls outside normal business hours are answered, screened, and documented based on your firm's criteria.</p>
       </div>
       <div class="how-step">
         <span class="n">03</span>
-        <h3>Nothing disappears.</h3>
-        <p>Incident facts, contact details, urgency, representation status, and notes are captured — so your team isn't reconstructing the call later.</p>
+        <h3>You receive the opportunity report</h3>
+        <p>At the end of the test, you see total after-hours calls, injury-related calls, qualified opportunities, call times, caller summaries, and routing outcomes.</p>
       </div>
       <div class="how-step">
         <span class="n">04</span>
-        <h3>You wake up with context.</h3>
-        <p>Qualified consults and urgent matters are routed your way, with the intake summary ready before morning.</p>
+        <h3>You decide whether to continue</h3>
+        <p>If the data shows after-hours demand, you can continue coverage. If there is no meaningful volume, you have learned that after-hours intake is not the bottleneck.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============ THE COVERAGE ============ -->
-<section class="section offer">
+<section class="section offer" id="test">
   <div class="wrap">
-    <p class="eyebrow rv">The coverage</p>
-    <h2 class="rv">Free until it books your first qualified consult.</h2>
-    <p class="sub lede rv">You've never heard of us, and a stranger asking to handle your firm's calls deserves skepticism. So you define the rules first — and the risk sits with us.</p>
+    <p class="eyebrow rv">The diagnostic</p>
+    <h2 class="rv">The 30-Day Missed Injury Opportunities Test</h2>
+    <p class="sub lede rv">For qualifying firms, SaveCases covers after-hours intake for 30 days so you can see what actually happens when your firm has real intake coverage outside business hours. During the test, new injury calls are answered, qualified based on your criteria, documented, and routed to your team.</p>
 
     <div class="offer-card rv">
       <ul>
-        <li>No setup fee, no upfront payment</li>
-        <li>You define what counts as qualified before coverage starts</li>
-        <li>If no qualified consult comes through, you owe nothing</li>
-        <li>You review the intake, call notes, and result before you decide</li>
+        <li>Qualification confirmed before coverage starts</li>
+        <li>Your team defines what counts as a qualified injury opportunity</li>
+        <li>New injury calls are answered outside business hours</li>
+        <li>Intake notes, call summaries, and routing outcomes are documented</li>
       </ul>
       <div class="offer-side">
-        <p class="big">After the first qualified consult, you decide whether to continue at a flat monthly fee. <em>That's the whole structure.</em></p>
-        <p>No contracts to untangle, no percentage of the case. One flat fee for the hours your office is dark.</p>
-        <a class="btn btn-ink" href="#book">Book a setup call <span class="arr">→</span></a>
+        <p class="big">This is not a generic free trial. <em>It is a diagnostic we offer only when we believe after-hours coverage may reveal real missed opportunity.</em></p>
+        <p>If the data shows meaningful after-hours demand, your firm can decide whether continued coverage makes sense.</p>
+        <a class="btn btn-ink" href="#book">See If Your Firm Qualifies <span class="arr">→</span></a>
       </div>
     </div>
   </div>
@@ -690,13 +762,40 @@ a:focus-visible, .btn:focus-visible{
   </div>
 </section>
 
+<!-- ============ FAQ ============ -->
+<section class="section faq" id="faq">
+  <div class="wrap">
+    <p class="eyebrow rv">FAQ</p>
+    <h2 class="rv">Questions firms ask before the test.</h2>
+
+    <div class="faq-grid">
+      <article class="faq-item rv">
+        <h3>Is this available to every firm?</h3>
+        <p>No. We only offer the 30-Day Missed Injury Opportunities Test to firms where we believe after-hours intake may reveal real missed opportunity.</p>
+      </article>
+      <article class="faq-item rv">
+        <h3>Do we have to list ourselves as 24/7?</h3>
+        <p>During the test, the goal is to measure what happens when your firm has real after-hours intake coverage. Your firm should only use wording that is accurate, such as 24/7 intake coverage or after-hours call answering.</p>
+      </article>
+      <article class="faq-item rv">
+        <h3>Does SaveCases give legal advice?</h3>
+        <p>No. SaveCases handles intake, fact collection, qualification, and routing based on your firm's criteria. Legal advice stays with the firm.</p>
+      </article>
+      <article class="faq-item rv">
+        <h3>What happens after 30 days?</h3>
+        <p>You receive a report showing call volume, injury-related inquiries, qualified opportunities, and intake summaries. Then your firm decides whether continued after-hours coverage makes sense.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- ============ BOOK ============ -->
 <section class="book" id="book">
   <div class="wrap">
-    <p class="eyebrow rv">Book it</p>
-    <h2 class="rv">Your after-hours line could be covered this week.</h2>
-    <p class="sub lede rv">A focused setup call to confirm your intake criteria: case types, locations, exclusions, what counts as qualified, how calls should be routed, and what the specialist says in your firm's name. It's a setup call, not a sales pitch.</p>
-    <a class="btn btn-amber rv" href="mailto:dario@savecases.com?subject=SaveCases%20setup%20call">Book a setup call <span class="arr">→</span></a>
+    <p class="eyebrow rv">Qualification review</p>
+    <h2 class="rv">See whether your firm qualifies for the 30-day test.</h2>
+    <p class="sub lede rv">A focused review to confirm your practice area, market fit, intake criteria, routing preferences, and whether after-hours coverage is likely worth measuring for your firm.</p>
+    <a class="btn btn-amber rv" href="mailto:dario@savecases.com?subject=SaveCases%20qualification%20review">See If Your Firm Qualifies <span class="arr">→</span></a>
     <p class="book-clockline rv">Right now it's <strong id="bookClock">--:--</strong> — <span id="bookContext">tonight, your line is covered or it isn't.</span></p>
     <p class="book-mail rv">or write to <a href="mailto:dario@savecases.com">dario@savecases.com</a></p>
   </div>
@@ -706,7 +805,7 @@ a:focus-visible, .btn:focus-visible{
 <footer class="footer">
   <div class="wrap">
     <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>SaveCases</a>
-    <span>After-hours injury intake, answered live</span>
+    <span>After-hours injury intake for selected personal injury firms</span>
   </div>
 </footer>
 
