@@ -172,10 +172,10 @@ a:focus-visible, button:focus-visible{
 .nav .btn{ min-height:40px; padding:9px 18px; font-size:.86rem; }
 
 .hero{
-  min-height:92vh;
+  min-height:100vh;
   display:flex;
-  align-items:center;
-  padding:128px 0 54px;
+  align-items:flex-start;
+  padding:92px 0 54px;
   color:var(--cloud);
   background:
     linear-gradient(rgba(26,24,19,.78), rgba(26,24,19,.88)),
@@ -186,15 +186,20 @@ a:focus-visible, button:focus-visible{
 }
 .hero-grid{
   display:grid;
-  grid-template-columns:minmax(0, .95fr) minmax(420px, 1.05fr);
-  gap:46px;
-  align-items:center;
+  grid-template-columns:1fr;
+  gap:28px;
+  align-items:start;
+}
+.hero-copy{
+  max-width:980px;
+  margin:0 auto;
+  text-align:center;
 }
 .firm-tag{
   display:inline-flex;
   align-items:center;
   gap:14px;
-  margin-bottom:26px;
+  margin-bottom:22px;
   padding:10px 13px;
   border:1px solid var(--line-night);
   border-radius:999px;
@@ -214,13 +219,22 @@ a:focus-visible, button:focus-visible{
   border-radius:999px;
   background:#fff;
 }
-.hero .eyebrow{ color:var(--amber-2); margin-bottom:24px; }
-.hero h1{ color:#fff; max-width:9.8em; margin-bottom:24px; }
+.hero .eyebrow{ color:var(--amber-2); justify-content:center; margin-bottom:20px; }
+.hero .eyebrow::after{
+  content:"";
+  width:26px;
+  height:1px;
+  background:currentColor;
+  opacity:.55;
+  flex:none;
+}
+.hero h1{ color:#fff; max-width:11.2em; margin:0 auto 20px; }
 .hero h1 em{ color:var(--amber-2); font-style:italic; }
-.hero .lede{ max-width:34em; color:var(--mist); margin-bottom:32px; }
-.hero-ctas{ display:flex; flex-wrap:wrap; gap:14px; margin-bottom:26px; }
+.hero .lede{ max-width:42em; color:var(--mist); margin:0 auto 26px; }
+.hero-ctas{ display:flex; justify-content:center; flex-wrap:wrap; gap:14px; margin-bottom:22px; }
 .proofline{
-  max-width:44em;
+  max-width:58em;
+  margin:0 auto;
   color:var(--mist);
   font-family:var(--mono);
   font-size:.75rem;
@@ -232,35 +246,49 @@ a:focus-visible, button:focus-visible{
 
 .vsl{
   position:relative;
+  width:min(100%, 980px);
+  margin:0 auto;
   overflow:hidden;
   border:1px solid var(--line-night);
   border-radius:18px;
   background:linear-gradient(180deg, #282219, #12100C);
   box-shadow:0 30px 80px -34px rgba(0,0,0,.72);
 }
-.vsl-screen{
+.vsl-media{
   position:relative;
   aspect-ratio:16/9;
-  min-height:260px;
-  display:grid;
-  place-items:center;
-  padding:28px;
+  min-height:360px;
+  overflow:hidden;
   background:
     linear-gradient(rgba(18,16,12,.54), rgba(18,16,12,.7)),
     radial-gradient(680px 260px at 50% 0%, rgba(198,164,86,.28), transparent 62%),
     var(--night);
 }
+.vsl-video{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  background:var(--night);
+}
 .vsl-frame{
-  width:min(88%, 520px);
+  position:absolute;
+  left:50%;
+  top:24px;
+  transform:translateX(-50%);
+  width:min(calc(100% - 48px), 560px);
   border:1px solid rgba(248,242,226,.18);
   border-radius:12px;
-  background:rgba(26,24,19,.62);
-  padding:26px;
+  background:rgba(26,24,19,.78);
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+  padding:20px 22px;
   text-align:center;
 }
+.vsl-canvas{ display:none; }
 .play{
-  width:72px;
-  height:72px;
+  width:52px;
+  height:52px;
   display:inline-grid;
   place-items:center;
   border:1px solid rgba(198,164,86,.55);
@@ -268,14 +296,14 @@ a:focus-visible, button:focus-visible{
   background:var(--amber);
   color:var(--night);
   box-shadow:0 18px 40px -18px rgba(198,164,86,.72);
-  margin-bottom:22px;
+  margin-bottom:12px;
 }
-.play svg{ width:28px; height:28px; margin-left:4px; fill:currentColor; }
+.play svg{ width:22px; height:22px; margin-left:3px; fill:currentColor; }
 .vsl-frame h2{
-  max-width:10em;
-  margin:0 auto 10px;
+  max-width:18em;
+  margin:0 auto 8px;
   color:#fff;
-  font-size:clamp(1.55rem, 3vw, 2.15rem);
+  font-size:clamp(1.25rem, 2.5vw, 1.85rem);
 }
 .vsl-frame p{ color:var(--mist); font-size:.95rem; line-height:1.55; }
 .vsl-bar{
@@ -582,28 +610,51 @@ a:focus-visible, button:focus-visible{
 .rv.in{ opacity:1; transform:none; }
 
 @media (max-width:980px){
-  .hero{ min-height:auto; padding-top:118px; }
-  .hero-grid,
+  .hero{ min-height:auto; padding-top:88px; }
   .offer-card{
     grid-template-columns:1fr;
   }
-  .hero-grid{ gap:38px; }
-  .vsl{ max-width:760px; }
+  .hero-grid{ gap:26px; }
   .brief-grid{ grid-template-columns:1fr; }
   .brief-card{ min-height:0; }
 }
 @media (max-width:760px){
   body{ font-size:16px; }
   .wrap{ padding:0 18px; }
+  .nav .wrap{ height:58px; }
+  .brand{ font-size:1.14rem; }
   .nav-note{ display:none; }
   .nav .btn{ display:none; }
-  .hero{ padding:104px 0 44px; }
+  .hero{ padding:72px 0 38px; }
+  .hero-grid{ gap:22px; }
+  .hero-copy{ text-align:left; }
   .firm-tag{ align-items:flex-start; border-radius:18px; }
   .firm-tag img{ width:92px; }
+  .hero .eyebrow{ justify-content:flex-start; }
+  .hero .eyebrow::after{ display:none; }
+  .hero h1{ font-size:clamp(2.05rem, 11vw, 3rem); margin-left:0; }
+  .hero .lede{ margin-left:0; }
   .hero-ctas{ display:grid; }
   .btn{ width:100%; }
-  .vsl-screen{ min-height:230px; padding:18px; }
-  .vsl-frame{ width:100%; padding:22px 18px; }
+  .vsl{ border-radius:12px; }
+  .vsl-media{ min-height:auto; aspect-ratio:16/9; }
+  .vsl-frame{
+    left:12px;
+    right:12px;
+    top:12px;
+    transform:none;
+    width:auto;
+    padding:13px 14px;
+    text-align:left;
+  }
+  .play{
+    width:38px;
+    height:38px;
+    margin-bottom:8px;
+  }
+  .play svg{ width:17px; height:17px; }
+  .vsl-frame h2{ font-size:1.08rem; }
+  .vsl-frame p{ font-size:.82rem; line-height:1.4; }
   .vsl-bar{ grid-template-columns:1fr; }
   .case-board{ grid-template-columns:1fr; }
   .section{ padding:72px 0; }
@@ -624,7 +675,40 @@ a:focus-visible, button:focus-visible{
 <main>
   <section class="hero" id="top">
     <div class="wrap hero-grid">
-      <div>
+      <div class="vsl" id="vsl" aria-label="Private video sales letter for Raff and Raff">
+        <div class="vsl-media">
+          <video
+            class="vsl-video"
+            id="vslVideo"
+            autoplay
+            muted
+            playsinline
+            loop
+            controls
+            preload="auto"
+            poster="https://www.raffandraff.com/wp-content/uploads/2022/10/111hero-opt.webp"
+            data-video-src="raffandraff-vsl.mp4"
+            aria-label="Private Raff and Raff SaveCases video briefing"
+          ></video>
+          <canvas class="vsl-canvas" id="vslCanvas" width="1280" height="720" aria-hidden="true"></canvas>
+          <div class="vsl-frame">
+            <div class="play" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <h2>Private after-hours intake briefing</h2>
+            <p>For Raff &amp; Raff: what happens between the injury search, the first call, and the firm that answers live.</p>
+          </div>
+        </div>
+        <div class="vsl-bar">
+          <div>
+            <p class="vsl-title">Raff &amp; Raff x SaveCases</p>
+            <p class="vsl-meta">Auto-playing VSL | built for partner review</p>
+          </div>
+          <span class="video-note"><span class="dot" aria-hidden="true"></span>Playing now</span>
+        </div>
+      </div>
+
+      <div class="hero-copy">
         <div class="firm-tag">
           <img src="https://www.raffandraff.com/wp-content/uploads/2022/10/1raff_raff_logo.png" alt="Raff &amp; Raff logo">
           <span>Private SaveCases briefing</span>
@@ -639,25 +723,6 @@ a:focus-visible, button:focus-visible{
         <p class="proofline">
           <b>Raff &amp; Raff public positioning:</b> New Jersey personal injury firm<span class="sep">|</span>100+ year history<span class="sep">|</span>Paterson, NJ<span class="sep">|</span>over $50M recovered
         </p>
-      </div>
-
-      <div class="vsl" id="vsl" aria-label="Private video sales letter for Raff and Raff">
-        <div class="vsl-screen">
-          <div class="vsl-frame">
-            <div class="play" aria-hidden="true">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-            </div>
-            <h2>Private after-hours intake briefing</h2>
-            <p>For Raff &amp; Raff: what happens between the injury search, the first call, and the firm that answers live.</p>
-          </div>
-        </div>
-        <div class="vsl-bar">
-          <div>
-            <p class="vsl-title">Raff &amp; Raff x SaveCases</p>
-            <p class="vsl-meta">4 minute VSL | built for partner review</p>
-          </div>
-          <span class="video-note"><span class="dot" aria-hidden="true"></span>Intake line open</span>
-        </div>
       </div>
     </div>
   </section>
@@ -821,6 +886,138 @@ setInterval(tick, 1000);
   bookContext.textContent = businessHours
     ? "At closing time, the line is covered or it is not."
     : "The office is closed. Injury calls can still be happening.";
+})();
+
+(function(){
+  var video = document.getElementById("vslVideo");
+  var canvas = document.getElementById("vslCanvas");
+  if (!video || !canvas) return;
+
+  function playVideo(){
+    var playAttempt = video.play();
+    if (playAttempt && typeof playAttempt.catch === "function"){
+      playAttempt.catch(function(){});
+    }
+  }
+
+  function startFallbackVideo(){
+    if (!canvas.captureStream) return;
+
+    var ctx = canvas.getContext("2d");
+    var w = canvas.width;
+    var h = canvas.height;
+    var started = Date.now();
+    var logs = [
+      ["7:42 PM", "Rear-end collision", "Answered live"],
+      ["9:18 PM", "Slip and fall", "Qualified"],
+      ["11:06 PM", "Rideshare injury", "Routed"],
+      ["2:03 AM", "Pedestrian injury", "Summary sent"]
+    ];
+
+    function draw(){
+      var t = (Date.now() - started) / 1000;
+      var sweep = (t % 12) / 12;
+      var pulse = .5 + Math.sin(t * 2.2) * .5;
+
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = "#1A1813";
+      ctx.fillRect(0, 0, w, h);
+
+      var glow = ctx.createRadialGradient(w * .68, h * .16, 40, w * .68, h * .16, 720);
+      glow.addColorStop(0, "rgba(198,164,86,.28)");
+      glow.addColorStop(.55, "rgba(198,164,86,.08)");
+      glow.addColorStop(1, "rgba(198,164,86,0)");
+      ctx.fillStyle = glow;
+      ctx.fillRect(0, 0, w, h);
+
+      ctx.strokeStyle = "rgba(198,164,86,.14)";
+      ctx.lineWidth = 1;
+      for (var x = -120 + (t * 18 % 120); x < w + 120; x += 120){
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x + 280, h);
+        ctx.stroke();
+      }
+
+      ctx.fillStyle = "rgba(248,242,226,.08)";
+      ctx.fillRect(72, 98, 466, 420);
+      ctx.strokeStyle = "rgba(198,164,86,.24)";
+      ctx.strokeRect(72, 98, 466, 420);
+
+      ctx.fillStyle = "#F8F2E2";
+      ctx.font = "600 42px Georgia, serif";
+      ctx.fillText("Raff & Raff", 112, 170);
+      ctx.fillStyle = "#CFC5AD";
+      ctx.font = "24px Arial, sans-serif";
+      ctx.fillText("Private SaveCases briefing", 112, 212);
+
+      ctx.fillStyle = "#A8842F";
+      ctx.fillRect(112, 252, 270 + Math.sin(t * 1.4) * 28, 8);
+      ctx.fillStyle = "rgba(248,242,226,.20)";
+      ctx.fillRect(112, 284, 356, 8);
+      ctx.fillRect(112, 316, 296, 8);
+
+      ctx.fillStyle = "rgba(47,85,64," + (.62 + pulse * .24) + ")";
+      ctx.beginPath();
+      ctx.arc(112, 408, 11 + pulse * 4, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = "#CFC5AD";
+      ctx.font = "22px Arial, sans-serif";
+      ctx.fillText("After-hours intake line open", 142, 416);
+
+      ctx.fillStyle = "rgba(248,242,226,.10)";
+      ctx.fillRect(616, 116, 520, 366);
+      ctx.strokeStyle = "rgba(198,164,86,.28)";
+      ctx.strokeRect(616, 116, 520, 366);
+
+      ctx.fillStyle = "#C6A456";
+      ctx.font = "600 20px Arial, sans-serif";
+      ctx.fillText("LIVE CALL FLOW", 652, 170);
+      ctx.font = "22px Arial, sans-serif";
+      logs.forEach(function(row, i){
+        var y = 224 + i * 62;
+        var active = ((t / 2) | 0) % logs.length === i;
+        ctx.fillStyle = active ? "rgba(47,85,64,.28)" : "rgba(248,242,226,.06)";
+        ctx.fillRect(650, y - 34, 448, 48);
+        ctx.fillStyle = "#CFC5AD";
+        ctx.fillText(row[0], 670, y);
+        ctx.fillStyle = "#F8F2E2";
+        ctx.fillText(row[1], 800, y);
+        ctx.fillStyle = active ? "#C6A456" : "#8FA78F";
+        ctx.fillText(row[2], 976, y);
+      });
+
+      ctx.fillStyle = "rgba(198,164,86,.24)";
+      ctx.fillRect(0, h - 14, w, 14);
+      ctx.fillStyle = "#C6A456";
+      ctx.fillRect(0, h - 14, w * sweep, 14);
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+    video.srcObject = canvas.captureStream(30);
+    playVideo();
+  }
+
+  function loadRecordedVideo(){
+    var src = video.getAttribute("data-video-src");
+    if (!src || !window.fetch){
+      startFallbackVideo();
+      return;
+    }
+
+    fetch(src, { method:"HEAD", cache:"no-store" })
+      .then(function(response){
+        if (!response.ok) throw new Error("video unavailable");
+        video.src = src;
+        video.load();
+        playVideo();
+      })
+      .catch(startFallbackVideo);
+  }
+
+  loadRecordedVideo();
 })();
 
 (function(){
