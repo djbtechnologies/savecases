@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 220">
+  <rect x="22" y="18" width="286" height="174" rx="12" fill="#17130f" opacity=".25"/>
+  <rect x="14" y="10" width="286" height="174" rx="12" fill="#f7efd9" stroke="#a8842f" stroke-opacity=".36"/>
+  <text x="36" y="55" font-family="Arial, sans-serif" font-size="14" letter-spacing="4" fill="#7c241f">EVIDENCE</text>
+  <text x="36" y="96" font-family="Georgia, serif" font-size="31" fill="#17130f">After-hours</text>
+  <path d="M38 122h224M38 147h176" stroke="#665947" stroke-opacity=".3" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="254" cy="55" r="24" fill="#17130f"/>
+  <path d="M254 34l5 15 16 1-13 9 5 16-13-10-13 10 5-16-13-9 16-1z" fill="#c7a457"/>
+</svg>

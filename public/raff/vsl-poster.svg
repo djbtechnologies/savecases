@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <defs>
+    <radialGradient id="glow" cx=".72" cy=".18" r=".7">
+      <stop stop-color="#4c3921"/>
+      <stop offset=".48" stop-color="#211a13"/>
+      <stop offset="1" stop-color="#0b0908"/>
+    </radialGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#glow)"/>
+  <path d="M0 560c220-92 448-86 684 18 201 88 400 94 596 18v124H0z" fill="#17130f" opacity=".72"/>
+  <rect x="96" y="96" width="490" height="430" rx="16" fill="#f7efd9" opacity=".08" stroke="#c7a457" stroke-opacity=".35"/>
+  <text x="142" y="188" fill="#f7efd9" font-family="Georgia, serif" font-size="62">Raff &amp; Raff</text>
+  <text x="142" y="246" fill="#c7a457" font-family="Arial, sans-serif" font-size="26" letter-spacing="4">PRIVATE SAVECASES BRIEFING</text>
+  <rect x="142" y="316" width="330" height="12" fill="#c7a457" opacity=".82"/>
+  <rect x="142" y="356" width="410" height="12" fill="#f7efd9" opacity=".22"/>
+  <rect x="142" y="394" width="360" height="12" fill="#f7efd9" opacity=".22"/>
+  <circle cx="806" cy="322" r="95" fill="#c7a457"/>
+  <path d="M772 266v112l96-56z" fill="#17130f"/>
+  <text x="692" y="488" fill="#f7efd9" font-family="Georgia, serif" font-size="42">After-hours intake review</text>
+</svg>

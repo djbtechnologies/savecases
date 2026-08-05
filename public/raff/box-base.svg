@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560">
+  <defs>
+    <linearGradient id="outer" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#eadfc8"/>
+      <stop offset=".62" stop-color="#c8baa0"/>
+      <stop offset="1" stop-color="#a8997e"/>
+    </linearGradient>
+    <radialGradient id="suede" cx=".5" cy=".42" r=".72">
+      <stop stop-color="#24201d"/>
+      <stop offset=".72" stop-color="#11100f"/>
+      <stop offset="1" stop-color="#080706"/>
+    </radialGradient>
+    <pattern id="grain" width="18" height="18" patternUnits="userSpaceOnUse">
+      <path d="M0 6h18M7 0v18" stroke="#fff" stroke-opacity=".10" stroke-width=".7"/>
+      <path d="M0 15h18M15 0v18" stroke="#5e523f" stroke-opacity=".13" stroke-width=".55"/>
+    </pattern>
+  </defs>
+  <rect x="110" y="120" width="680" height="360" rx="34" fill="#080706" opacity=".7"/>
+  <rect x="124" y="92" width="652" height="370" rx="34" fill="url(#outer)"/>
+  <rect x="124" y="92" width="652" height="370" rx="34" fill="url(#grain)"/>
+  <rect x="166" y="132" width="568" height="288" rx="24" fill="#070606"/>
+  <rect x="184" y="150" width="532" height="252" rx="18" fill="url(#suede)"/>
+  <path d="M205 202c72-35 145-35 218 0 79 38 160 38 243 0" fill="none" stroke="#c7a457" stroke-opacity=".13" stroke-width="2"/>
+  <path d="M212 356c84 26 165 26 244 0 72-24 147-24 226 0" fill="none" stroke="#c7a457" stroke-opacity=".10" stroke-width="2"/>
+</svg>

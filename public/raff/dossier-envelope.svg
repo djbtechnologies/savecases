@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 290">
+  <defs>
+    <linearGradient id="paper" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#fbf3dc"/>
+      <stop offset=".8" stop-color="#e2d3ae"/>
+    </linearGradient>
+  </defs>
+  <path d="M42 70h146l24 28h166c19 0 34 15 34 34v94c0 19-15 34-34 34H42c-19 0-34-15-34-34V104c0-19 15-34 34-34Z" fill="#17130f" opacity=".26"/>
+  <path d="M38 50h139l26 30h178c18 0 32 14 32 32v105c0 18-14 32-32 32H38c-18 0-32-14-32-32V82c0-18 14-32 32-32Z" fill="url(#paper)" stroke="#a8842f" stroke-opacity=".32" stroke-width="2"/>
+  <path d="M22 113 210 207l188-94" fill="none" stroke="#a8842f" stroke-opacity=".3" stroke-width="2"/>
+  <path d="M72 93h125" stroke="#17130f" stroke-opacity=".22" stroke-width="3"/>
+  <text x="72" y="138" font-family="Georgia, serif" font-size="34" fill="#17130f">Dossier</text>
+  <text x="72" y="169" font-family="Arial, sans-serif" font-size="15" letter-spacing="3" fill="#7c241f">PRIVATE INTAKE REVIEW</text>
+  <circle cx="326" cy="178" r="29" fill="#7c241f"/>
+  <path d="M306 178c11-12 25-12 40 0-13 10-26 10-40 0Z" fill="#a93b32" opacity=".65"/>
+</svg>

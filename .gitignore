@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+.next/
+out/
+npm-debug.log*
+
+# Canonical originals are already tracked at /assets/raff-raff.
+public/assets/raff-raff/
