@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+Disallow: /raffandraff/
+
+Sitemap: https://savecases.com/sitemap.xml
